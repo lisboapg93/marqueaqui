@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AdicaoPage extends StatefulWidget {
-  const AdicaoPage({Key? key}) : super(key: key);
-
+  const AdicaoPage({ Key? key }) : super(key: key);
+  
   @override
-  State<AdicaoPage> createState() => _AdicaoPageState();
+  _AdicaoPageState createState() => _AdicaoPageState();
 }
 
 class _AdicaoPageState extends State<AdicaoPage> {
@@ -23,37 +23,38 @@ class _AdicaoPageState extends State<AdicaoPage> {
         _date = newDate;
       });
     }
+  }
 
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.green,
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            TextFormField(
+              onChanged: (value) {
+                setState(() {});
+              },
+              decoration: const InputDecoration(
+                labelText: 'Consulta/Exame', contentPadding: EdgeInsets.all(18)
+              ),
+            ),
+            ElevatedButton(
+              onPressed: _selectDate,
+              child: const Text('SELECIONE A DATA'),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Data Selecionada: $_date',
+            ),
+          ],
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              TextFormField(
-                onChanged: (value) {
-                  setState(() {});
-                },
-                decoration: const InputDecoration(
-                  labelText: 'Consulta/Exame',
-                ),
-              ),
-              ElevatedButton(
-                onPressed: _selectDate,
-                child: const Text('SELECT DATE'),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Selected date: $_date',
-              ),
-            ],
-          ),
-        ),
-      );
-    }
+      ),
+    );
   }
 }
+
