@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AdicaoPage extends StatefulWidget {
-  const AdicaoPage({ Key? key }) : super(key: key);
-  
+  const AdicaoPage({Key? key}) : super(key: key);
+
   @override
   _AdicaoPageState createState() => _AdicaoPageState();
 }
@@ -16,7 +16,8 @@ class _AdicaoPageState extends State<AdicaoPage> {
       initialDate: _date,
       firstDate: DateTime(2017, 1),
       lastDate: DateTime(2022, 7),
-      helpText: 'Select a date',
+      helpText: '',
+      locale: const Locale("pt", "BR")
     );
     if (newDate != null) {
       setState(() {
@@ -31,30 +32,43 @@ class _AdicaoPageState extends State<AdicaoPage> {
       appBar: AppBar(
         backgroundColor: Colors.green,
       ),
-      body: Center(
+      body: SingleChildScrollView(
+        reverse: true,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            TextFormField(
-              onChanged: (value) {
-                setState(() {});
-              },
-              decoration: const InputDecoration(
-                labelText: 'Consulta/Exame', contentPadding: EdgeInsets.all(18)
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: TextFormField(
+                onChanged: (value) {
+                  setState(() {});
+                },
+                decoration: const InputDecoration(
+                  labelText: 'Consulta/Exame',
+                ),
               ),
             ),
-            ElevatedButton(
-              onPressed: _selectDate,
-              child: const Text('SELECIONE A DATA'),
+            Container(
+              margin: const EdgeInsets.only(top: 20.0),
+              child: ElevatedButton(
+                onPressed: _selectDate,
+                child: const Text('Selecione a data'),
+              ),
             ),
             const SizedBox(height: 8),
             Text(
               'Data Selecionada: $_date',
+            ),Container(
+              margin: const EdgeInsets.all(150),
+              child: ElevatedButton(
+                  onPressed: () {
+                    // Coloque aqui a lógica para salvar os dados
+                  },
+                  child: const Text('SALVAR'),
+                ),
             ),
           ],
         ),
-      ),
+      )
     );
   }
 }
-
