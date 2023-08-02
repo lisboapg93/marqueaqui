@@ -23,7 +23,8 @@ class _HomePageState extends State<HomePage> {
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               bottomRight: Radius.circular(25),
-              bottomLeft: Radius.circular(25)),
+              bottomLeft: Radius.circular(25)
+              ),
         ),
         elevation: 0.00,
         actions: [
@@ -38,14 +39,26 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: const Center(
-        child: Text('Sua lista de consultas e exames', 
-        style: TextStyle(
-          fontSize: 20,
-          ),
+      body: ListView(
+        padding: const EdgeInsets.all(8),
+          children: <Widget>[
+            Container(
+              height: 50,
+              color: Colors.amber[600],
+                child: const Center(child: Text('Entry A')),
+              ),
+            Container(
+              height: 50,
+              color: Colors.amber[500],
+                child: const Center(child: Text('Entry B')),
+              ),
+              Container(
+                height: 50,
+                color: Colors.amber[100],
+                  child: const Center(child: Text('Entry C')),
+                ),
+            ],
         ),
-      ),
     );
-    
   }
 }
