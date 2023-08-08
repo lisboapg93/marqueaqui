@@ -63,8 +63,10 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(8),
         children: <Widget>[
           Container(
-            height: 50,
-            color: Colors.amber[200],
+            height: 50,decoration: BoxDecoration(
+              border: Border.all(width: 3, color: const Color.fromARGB(255, 214, 214, 213)),borderRadius: BorderRadius.circular(10),
+            color: const Color.fromARGB(255, 214, 214, 213),
+            ),
             child: Column(
               // Use um Column para organizar os Text widgets verticalmente
               mainAxisAlignment: MainAxisAlignment.center,
