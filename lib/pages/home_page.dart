@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   DateTime _savedDate = DateTime(2020, 11, 17); // Variável para armazenar a data salva
-  String _eSpecialidade = ''; // Variável para armazenar a especialidade
+  final String _specialidade = ''; // Variável para armazenar a especialidade
 
   @override
   void initState() {
@@ -64,7 +64,11 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           Container(
             height: 50,decoration: BoxDecoration(
-              border: Border.all(width: 3, color: const Color.fromARGB(255, 214, 214, 213)),borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                width: 3, 
+                color: const Color.fromARGB(255, 214, 214, 213)
+                ),
+                borderRadius: BorderRadius.circular(10),
             color: const Color.fromARGB(255, 214, 214, 213),
             ),
             child: Column(
@@ -72,7 +76,7 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text('Data Salva: ${DateFormat('dd/MM/yyyy').format(_savedDate)}'),
-                Text('Especialidade: $_eSpecialidade'),
+                Text('Especialidade: $_specialidade'),
               ],
             ),
           ),

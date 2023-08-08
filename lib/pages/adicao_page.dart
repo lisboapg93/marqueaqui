@@ -2,26 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 
-
-
 class AdicaoPage extends StatefulWidget {
-
-
   @override
   _AdicaoPageState createState() => _AdicaoPageState();
 }
 
-
 class _AdicaoPageState extends State<AdicaoPage> {
   final _specialidade = TextEditingController();
   DateTime _date = DateTime(2020, 11, 17);
-
-  // @override
-  // void dispose() {
-  //   _specialidade.dispose(); // Lembre-se de descartar o TextEditingController
-  //   super.dispose();
-  // }
-
 
   void _selectDate() async {
     final DateTime? newDate = await showDatePicker(
@@ -38,6 +26,11 @@ class _AdicaoPageState extends State<AdicaoPage> {
       });
       _saveSelectedDate(_date);
     }
+  }
+
+  Future<void> _saveSpecialidade(String specialidade) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('specialidade', specialidade);
   }
 
   Future<void> _saveSelectedDate(DateTime date) async {
@@ -59,7 +52,9 @@ class _AdicaoPageState extends State<AdicaoPage> {
               child: TextFormField(
                 controller: _specialidade,
                 validator: (String? value) {
-                  return (value != null && value.contains('@')) ? 'Do not use the @ char.' : null;
+                  return (value != null && value.contains('@'))
+                      ? 'Do not use the @ char.'
+                      : null;
                 },
                 decoration: const InputDecoration(
                   labelText: 'Consulta/Exame',
@@ -81,7 +76,8 @@ class _AdicaoPageState extends State<AdicaoPage> {
               margin: const EdgeInsets.all(150),
               child: ElevatedButton(
                 onPressed: () {
-                  (_specialidade as String); // Salvar _eSpecialidade
+                  _saveSelectedDate(_date); 
+                  _saveSpecialidade(_specialidade.text); // Obter o texto do TextEditingController
                   Navigator.pop(context);
                 },
                 child: const Text('SALVAR'),
