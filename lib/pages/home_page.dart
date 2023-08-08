@@ -66,10 +66,10 @@ class _HomePageState extends State<HomePage> {
             height: 50,decoration: BoxDecoration(
               border: Border.all(
                 width: 3, 
-                color: const Color.fromARGB(255, 214, 214, 213)
+                color: const Color.fromARGB(255, 54, 189, 54)
                 ),
                 borderRadius: BorderRadius.circular(10),
-            color: const Color.fromARGB(255, 214, 214, 213),
+            color: const Color.fromARGB(255, 54, 189, 54),
             ),
             child: Column(
               // Use um Column para organizar os Text widgets verticalmente
