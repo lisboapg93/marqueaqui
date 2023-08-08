@@ -5,10 +5,7 @@ import 'package:intl/intl.dart';
 
 
 class AdicaoPage extends StatefulWidget {
-  const AdicaoPage({Key? key, required this.onSave}) : super(key: key);
-  
 
-  final Function(String) onSave;
 
   @override
   _AdicaoPageState createState() => _AdicaoPageState();
@@ -16,15 +13,14 @@ class AdicaoPage extends StatefulWidget {
 
 
 class _AdicaoPageState extends State<AdicaoPage> {
-  TextEditingController _specialidadeController = TextEditingController();
-  String _eSpecialidade = '';
+  final _specialidade = TextEditingController();
   DateTime _date = DateTime(2020, 11, 17);
 
-  @override
-  void dispose() {
-    _specialidadeController.dispose(); // Lembre-se de descartar o TextEditingController
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _specialidade.dispose(); // Lembre-se de descartar o TextEditingController
+  //   super.dispose();
+  // }
 
 
   void _selectDate() async {
@@ -61,11 +57,7 @@ class _AdicaoPageState extends State<AdicaoPage> {
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: TextFormField(
-                onSaved: (value) {
-                  setState(() {
-                    _eSpecialidade = value;
-                  });
-                },
+                controller: _specialidade,
                 validator: (String? value) {
                   return (value != null && value.contains('@')) ? 'Do not use the @ char.' : null;
                 },
@@ -89,7 +81,7 @@ class _AdicaoPageState extends State<AdicaoPage> {
               margin: const EdgeInsets.all(150),
               child: ElevatedButton(
                 onPressed: () {
-                  widget.onSave(_eSpecialidade); // Salvar _eSpecialidade
+                  (_specialidade as String); // Salvar _eSpecialidade
                   Navigator.pop(context);
                 },
                 child: const Text('SALVAR'),
