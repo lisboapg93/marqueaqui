@@ -3,6 +3,7 @@ import 'package:marqueaqui/pages/adicao_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -13,6 +14,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   DateTime _savedDate = DateTime(2020, 11, 17); // Variável para armazenar a data salva
   final String _specialidade = ''; // Variável para armazenar a especialidade
+
+  // List<String> _values = ['One', 'Two', 'Three', 'Four', 'Five'];
 
   @override
   void initState() {
@@ -42,8 +45,9 @@ class _HomePageState extends State<HomePage> {
         toolbarOpacity: 0.8,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(25),
-              bottomLeft: Radius.circular(25)),
+            bottomRight: Radius.circular(25),
+            bottomLeft: Radius.circular(25),
+          ),
         ),
         elevation: 0.0,
         actions: [
@@ -52,35 +56,48 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) =>  AdicaoPage()
-                ),
+                MaterialPageRoute(builder: (_) => AdicaoPage()),
               );
             },
           ),
         ],
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(8),
-        children: <Widget>[
-          Container(
-            height: 50,decoration: BoxDecoration(
-              border: Border.all(
-                width: 3, 
-                color: const Color.fromARGB(255, 54, 189, 54)
-                ),
-                borderRadius: BorderRadius.circular(10),
-            color: const Color.fromARGB(255, 54, 189, 54),
-            ),
-            child: Column(
-              // Use um Column para organizar os Text widgets verticalmente
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Data Salva: ${DateFormat('dd/MM/yyyy').format(_savedDate)}'),
-                Text('Especialidade: $_specialidade'),
-              ],
-            ),
+      body: Padding(
+        padding: const EdgeInsets.all(15),
+        child: ListView.separated(
+          itemCount: _specialidade.length,
+          padding: const EdgeInsets.all(5.0),
+          separatorBuilder: (context, index) => const Divider(
+            color: Colors.black,
           ),
-        ],
+          itemBuilder: (context, index) {
+            return Dismissible(
+              key: Key('Especialidade: $_specialidade'),
+              background: Container(
+                color: Colors.red,
+                child: const Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Icon(Icons.delete, color: Colors.white),
+                    ],
+                  ),
+                ),
+              ),
+              onDismissed: (DismissDirection direction) {
+                setState(() {
+                  _specialidade.remove(_specialidade);
+                });
+              },
+              child: ListTile(
+                leading: const Icon(Icons.local_activity, size: 50),
+                title: Text(_specialidade[index]),
+                subtitle: Text('Data Salva: ${DateFormat('dd/MM/yyyy').format(_savedDate)}'),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
