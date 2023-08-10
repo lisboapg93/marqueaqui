@@ -78,6 +78,7 @@ class _AdicaoPageState extends State<AdicaoPage> {
                 onPressed: () {
                   _saveSelectedDate(_date); 
                   _saveSpecialidade(_specialidade.text); // Obter o texto do TextEditingController
+                  print(_specialidade.text);
                   Navigator.pop(context);
                 },
                 child: const Text('SALVAR'),

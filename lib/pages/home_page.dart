@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
               ),
               onDismissed: (DismissDirection direction) {
                 setState(() {
-                  _specialidade.remove(_specialidade);
+                  //_specialidade(_specialidade);
                 });
               },
               child: ListTile(
